@@ -1,0 +1,14 @@
+name,strand,bin_index,paper_n,paper_frac,ours_n,ours_frac,recovered
+REZ1L,+,8,28,0.875,30,0.938,True
+REZ2L,+,32,27,0.844,27,0.844,True
+REZ3L,+,35,32,1.0,32,1.0,True
+REZ4L,+,40,26,0.812,26,0.812,True
+REZ5L,+,41,28,0.875,28,0.875,True
+REZ6L,+,65,29,0.906,29,0.906,True
+REZ7L,+,67,30,0.938,30,0.938,True
+REZ8L,+,82,30,0.938,30,0.938,True
+REZ1H,-,38,32,1.0,32,1.0,True
+REZ2H,-,39,30,0.938,28,0.875,True
+REZ3H,-,74,29,0.906,28,0.875,True
+REZ4H,-,81,31,0.969,31,0.969,True
+REZ5H,-,82,26,0.812,26,0.812,True

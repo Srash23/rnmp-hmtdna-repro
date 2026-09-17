@@ -1,0 +1,24 @@
+# Downstream analysis: PPB / enrichment factor / REZ / hotspot / composition,
+# and all figure generation. Deliberately separate from rnmp-pipeline so that
+# re-solving the Python stack never perturbs the aligner versions.
+name: rnmp-analysis
+channels:
+  - conda-forge
+  - bioconda
+dependencies:
+  - python=3.11
+  - numpy
+  - pandas
+  - scipy               # Mann-Whitney U tests (paper Methods: "Statistical test")
+  - statsmodels         # multiple-testing correction for hotspot / bin enrichment
+  - matplotlib
+  - seaborn
+  - pyyaml
+  - xlrd                # legacy BIFF .xls -- the paper's supplementary tables
+  - openpyxl
+  - biopython           # chrM FASTA handling, reverse complement, dNMP backgrounds
+  - pysam
+  - pybedtools
+  - logomaker           # Python-side sequence logos (cross-check vs ggseqlogo)
+  - pytest
+  - jupyterlab

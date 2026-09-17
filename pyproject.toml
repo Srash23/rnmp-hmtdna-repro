@@ -1,0 +1,16 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rnmp-hmtdna-repro"
+version = "0.1.0"
+description = "Reproduction of Xu, Yang et al. NAR 2024 rNMP mapping in human mtDNA, extended to Berglund et al. 2017"
+requires-python = ">=3.10"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

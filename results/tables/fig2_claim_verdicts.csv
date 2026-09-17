@@ -1,0 +1,11 @@
+claim,paper,before,after,verdict
+CD4+T hotspots are rAMP,19/20,19/20,19/20,EXACT
+DLTB hotspots are rAMP,20/20,20/20,20/20,EXACT
+DLTB mainly heavy strand,yes,20/20 heavy,20/20 heavy,confirmed
+hESC-H9 hotspots are rCMP,19/20,18/20,18/20,off by 1
+hESC-H9 more on light strand,yes,18/20 light,18/20 light,confirmed
+HEK293T all rCMP or rGMP,20/20,19/20,20/20,EXACT after RE filter
+HEK293T more on light strand,yes,14/20 light,15/20 light,confirmed
+RNH2A-KO mostly rGMP,14/20,16/20,14/20,EXACT after RE filter
+combined top 20 light-dominant,17/20,15/20,15/20,direction confirmed
+70% of common hotspots are rCMP,70%,64.7% (33/51),64.7% (33/51),substance confirmed; Table S4 itself gives 66.7%

@@ -1,0 +1,7 @@
+subset,n_libs,n_hotspots,light,rAMP,rCMP,rGMP
+All libraries,32,51,15,4,11,5
+CD4+T,5,1606,17,19,0,1
+hESC-H9,5,592,18,1,18,1
+DLTB,4,19503,0,20,0,0
+HEK293T,3,8582,15,0,14,6
+HEK293T RNH2A-KO,8,1017,6,1,5,14

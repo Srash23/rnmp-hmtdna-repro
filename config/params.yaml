@@ -1,0 +1,74 @@
+# All analysis constants, transcribed from Xu, Yang et al. NAR 2024, 52:1207-1225,
+# "Materials and methods". Section names below refer to that paper.
+# Every number here is traceable to a sentence in the Methods -- do not change one
+# without updating the `source` note beside it.
+
+reference:
+  assembly: GRCh38
+  contig: chrM
+  length: 16569              # chrM in GRCh38 / rCRS
+  circular: true
+
+trimming:                    # Methods, "Locate rNMPs in DNA"
+  adapter: AGTTGCGACACGGATCTATCA
+  quality: 15
+  min_length: 62
+  # exact published invocation:
+  # trim_galore -a AGTTGCGACACGGATCTATCA -q 15 --length 62 input.fastq -o output.fastq
+
+alignment:                   # Ribose-Map Alignment module -> bowtie2
+  mismatches: 0              # bowtie2 -N
+  seed: 123456789
+  threads: 4
+  quality: 0                 # Ribose-Map `quality` (MAPQ filter in coordinate.sh)
+
+strands:
+  # 12 of 13 CDSs lie on the light strand; ND6 is on the heavy strand.
+  # Ribose-Map emits BED strand as + / -; map to light / heavy in one place only.
+  light: "+"
+  heavy: "-"
+
+rez:                         # Methods, "Detect rNMP enriched zones (REZs) in hmtDNA"
+  bin_size: 200
+  n_bins_total: 166          # ceil(16569 / 200) = 83 bins per strand x 2 strands
+  ef_threshold: 1.0          # bins with EF > 1 are enriched
+  # VERIFIED against Suppl. Tables S2 + S4: R_total,L is the library's
+  # whole-mtDNA rNMP count with both strands POOLED. A uniform library therefore
+  # sits at EF = 0.5, so "EF > 1" means >2x the genome-average rate.
+  # See tests/test_published_values.py and docs/dataset_notes.md S3.
+  ef_normalize_by: genome    # genome | strand  (strand = sensitivity analysis only)
+  # Expected result: 8 common REZs on the light strand, 5 on the heavy strand,
+  # coordinates in data/external/table_S3_common_rez.tsv
+  common_rez_requires_all_categories: true
+  common_rez_library_fraction: 0.80   # enriched in >=80% of libraries
+
+ppb:                         # Methods, "Calculate the normalized frequencies..."
+  moving_average_window: 51  # used for the control region only; CDS comparison uses raw PPB
+
+patterns:                    # Suppl. Table S5 sheet layouts fix these conventions
+  nr_rnmp_position: second   # sheet human_nr keyed AA,CA,GA,TA,AC,... -> rNMP 2nd
+  rn_rnmp_position: first    # sheet human_rn keyed AA,AC,AG,AT,CA,... -> rNMP 1st
+
+hotspots:                    # Methods, "Determine the rNMP hotspots and high-frequency..."
+  # "hotspot" = single-nt position with >=1 rNMP in ALL libraries considered
+  min_libraries_fraction: 1.0
+  # "high-frequency location" = top 1% of positions by per-library rNMP count frequency
+  top_percentile: 0.99
+  logo_flank: 3              # +/- 3 bp context; Suppl. Table S4 column is
+                             # "Pattern(NNNRNNN)", confirming a 7-nt window
+
+statistics:                  # Methods, "Statistical test"
+  test: mannwhitneyu
+  alpha: 0.05
+  composition_expectation: 0.25
+  dinucleotide_expectation: 0.25
+  trinucleotide_expectation: 0.0625
+  # NOTE: Suppl. Table S5's footnote gives 0.125 for the trinucleotide null.
+  # That is a typo -- sheet `human_nnr` carries all 64 trinucleotides, i.e. 16
+  # neighbour contexts per rNMP, so the null is 1/16 = 0.0625 as the Methods say.
+  composition_test_side: greater   # S5 footnote: "Right-sided Mann-Whitney U"
+  strand_test_side: two-sided      # Methods: two-tailed for light vs heavy
+
+filters:                     # Methods, "Locate rNMPs in DNA"
+  remove_restriction_enzyme_sites: true   # Zenodo 10.5281/zenodo.8121711
+  remove_reference_mismatches: true       # sequencing-error rNMPs

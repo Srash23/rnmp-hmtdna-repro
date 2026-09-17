@@ -1,0 +1,9 @@
+stage,n
+"Raw reads
+(ENA)",5070
+"Trimmed
+(q15, ≥62 nt)",4873
+"Aligned
+(Bowtie2)",4866
+"rNMPs
+(mismatch-filtered)",4798

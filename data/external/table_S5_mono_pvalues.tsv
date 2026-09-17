@@ -1,0 +1,9 @@
+Celltype	A	C	G	U
+all	0.822724899680588	0.0336198312427497	0.50286308048704	0.999999999999905
+CD4T	0.00374747875846762	0.74809378559347	0.74809378559347	0.99811533398342
+hESC-H9	0.99811533398342	0.00374747875846762	0.99811533398342	0.99811533398342
+DLTB	0.0105352850671893	0.995529212607049	0.561108859826883	0.995529212607049
+TLTB	0.0105352850671893	0.995529212607049	0.995529212607049	0.995529212607049
+RNH2A-KO T3-8	0.995529212607049	0.0105352850671893	0.0105352850671893	0.995529212607049
+RNH2A-KO T3-17	0.995529212607049	0.0105352850671893	0.0105352850671893	0.995529212607049
+Mann-Whitney U test for rNMP composition and preferred dinucleotide and trinucleotide patterns in hmtDNA and S. cerevisiae mtDNA. Right-sided Mann-Whitney U tests are performed on the normalized frequencies versus the expectation value (0.25 for composition and dinucleotide pattern, 0.125 for trinucleotide pattern) for each cell type and all cell types combined. Cells with bold font show statistically significant results with a P-value < 0.05, which means the pattern is preferred.				
